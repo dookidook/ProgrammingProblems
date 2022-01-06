@@ -1,0 +1,46 @@
+#with below code you will get 100%:
+def solve(string,n):
+  countI =string.count('I')
+  if countI==n:
+    return 1
+  countO=string.count('O')
+  if countO > countI:
+    return 0
+  k= solve(string + 'O',n)
+  h= solve(string + 'I',n)
+  return k+h
+
+n= int(input())
+strings=input()
+print(solve(strings,n))
+
+##############
+wiht this code you will get 75 % but it's a good practice to learn permutaion and product functions:
+from itertools import product
+#from functools import lru_cache
+#@lru_cache
+def is_valid(seq):
+
+    _in, _out = 0, 0
+    for x in seq:
+        if x == 'I':
+            _in += 1
+        else:
+            _out += 1
+        if (_out > _in) or (_in > len(seq)/2):
+            return False
+
+    return True
+total_len = int(input())*2
+start_seq = input()
+
+# all possible sequences of 'I' and 'O'
+seq_tuples =product("IO", repeat=total_len)
+
+# Convert to strings
+count=0
+for items in seq_tuples:
+    seq_tuples=''.join(items)
+    if seq_tuples.startswith(start_seq) and is_valid(items):
+        count+=1
+print(count)
