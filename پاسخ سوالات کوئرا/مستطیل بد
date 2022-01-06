@@ -1,0 +1,10 @@
+#https://mathworld.wolfram.com/AlcuinsSequence.html
+#no side of triangle can be >= than half of the stick
+#to make a triangle sum of two sides should be greater than the third side
+# which is only possible if the longest side is strictly less than half,
+
+
+import math
+n = int(input())
+
+print(round(n ** 2 / 48)) if n % 2 == 0 else print(round((n + 3)** 2 / 48))
